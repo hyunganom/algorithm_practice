@@ -1,30 +1,27 @@
 package algorithm_practice;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class SAWsw {
-	public int[] solution(int[] arr) {
-		int[] answer = new int[0];
-		ArrayList<Integer> arrList = new ArrayList();
-		int num = 10;
-		for (int i = 0; i < arr.length; ++i) {
-			if (arr[i] != num) {
-				arrList.add(arr[i]);
-				num = arr[i];
-			}
-		}
+	static int[] solution(int[] arr) {
+        LinkedList<Integer> list = new LinkedList<>();
+        for (Integer i : arr) {
+            if(!list.isEmpty() && list.getLast()==i)
+                continue;
+            list.add(i);
+        }
+        return list.stream().mapToInt(i->i).toArray();
+    }
 
-		answer = new int[arrList.size()];
-		int i;
-		for (i = 0; i < answer.length; ++i) {
-			answer[i] = (Integer) arrList.get(i);
-		}
-
-		return answer;
-	}
+	
+	
 	public static void main(String args[]) {
-        String path = System.getProperty("user.dir");
-        System.out.println("현재 작업 경로: " + path);
+//        String path = System.getProperty("user.dir");
+//        System.out.println("경로: " + path);
+		 int[] arr = new int[]{1, 1, 3, 3, 0, 1, 1};
+	        int[] r = solution(arr);
+	        for (int i : r)
+	            System.out.print(i+" ");    
     }
 }
 
